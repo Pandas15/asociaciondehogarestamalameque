@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asociación de Hogares Comunitarios FAMI de Tamalameque</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f6fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .nav {
+            background-color: #34495e;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .nav a:hover {
+            background-color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .intro-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .mission-statement {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f2 100%);
+            border-left: 4px solid #3498db;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            font-style: italic;
+            color: #2c3e50;
+        }
+
+        .convocatoria-section {
+            margin-bottom: 3rem;
+        }
+
+        .convocatoria-header {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px 10px 0 0;
+            margin-top: 2rem;
+        }
+
+        .convocatoria-header.eih {
+            background: linear-gradient(135deg, #e74c3c 0%, #e67e22 100%);
+        }
+
+        .convocatoria-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .convocatoria-description {
+            background: white;
+            padding: 1.5rem;
+            border: 2px solid #27ae60;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .convocatoria-description.eih {
+            border-color: #e74c3c;
+        }
+
+        .jobs-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem 0;
+        }
+
+        .job-listing {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 2px solid #e1e1e1;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .job-listing:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .job-location {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .requirements {
+            margin: 1rem 0;
+            flex-grow: 1;
+        }
+
+        .requirements h4 {
+            color: #34495e;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .requirements ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .requirements li {
+            font-size: 0.9rem;
+            color: #555;
+            padding: 0.4rem 0;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .requirements li:before {
+            content: "✓";
+            color: #27ae60;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .apply-button {
+            margin-top: 1rem;
+            padding: 0.85rem;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1rem;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .apply-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+        }
+
+        .docs-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .docs-section h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .docs-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .docs-section li {
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: #f8f9fa;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+
+        .docs-section li:hover {
+            background: #e8f4f8;
+            transform: translateX(5px);
+        }
+
+        .docs-section a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .docs-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Contador Regresivo Flotante */
+        .countdown-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+            z-index: 1000;
+            min-width: 280px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 12px 35px rgba(231, 76, 60, 0.6);
+            }
+        }
+
+        .countdown-header {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.95;
+        }
+
+        .countdown-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .countdown-display {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.8rem 0.5rem;
+            border-radius: 8px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .countdown-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: block;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            margin-top: 0.3rem;
+            opacity: 0.9;
+            display: block;
+        }
+
+        .countdown-expired {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .close-countdown {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            line-height: 1;
+            transition: all 0.3s;
+        }
+
+        .close-countdown:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .countdown-container {
+                position: fixed;
+                top: auto;
+                bottom: 0;
+                right: 0;
+                left: 0;
+                border-radius: 15px 15px 0 0;
+                min-width: auto;
+            }
+
+            .countdown-display {
+                gap: 0.3rem;
+            }
+
+            .countdown-value {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav a {
+                display: block;
+                margin: 0.5rem auto;
+                width: 200px;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .jobs-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Contador Regresivo Flotante -->
+    <div class="countdown-container" id="countdownContainer">
+        <button class="close-countdown" onclick="document.getElementById('countdownContainer').style.display='none'">×</button>
+        <div class="countdown-header">
+            <div class="countdown-title">⏰ Tiempo Restante</div>
+            <div>Convocatorias 2026</div>
+        </div>
+        <div id="countdown"></div>
+    </div>
+
+    <header class="header">
+        <h1>Asociación de Hogares Comunitarios FAMI de Tamalameque</h1>
+        <p>NIT: 800205845</p>
+        <p>Comprometidos con el desarrollo integral de la primera infancia</p>
+    </header>
+
+    <nav class="nav">
+        <a href="#inicio">Inicio</a>
+        <a href="#cdi">Convocatoria CDI</a>
+        <a href="#eih">Convocatoria EIH</a>
+        <a href="#documentos">Documentos</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="container">
+        <div id="inicio" class="intro-section">
+            <h2>Convocatorias Abiertas 2026</h2>
+            <p>La Asociación de Hogares Comunitarios FAMI de Tamalameque se complace en anunciar la apertura de convocatorias para dos importantes programas de atención a la primera infancia:</p>
+            <ul style="margin-top: 1rem; padding-left: 2rem;">
+                <li style="margin: 0.5rem 0;"><strong>CDI</strong> - Centro de Desarrollo Infantil</li>
+                <li style="margin: 0.5rem 0;"><strong>EIH</strong> - Educación Inicial en el Hogar</li>
+            </ul>
+        </div>
+
+        <!-- CONVOCATORIA CDI -->
+        <div id="cdi" class="convocatoria-section">
+            <div class="convocatoria-header">
+                <h2>📋 Convocatoria CDI - Centro de Desarrollo Infantil</h2>
+                <p>Modalidad institucional para atención integral</p>
+            </div>
+            <div class="convocatoria-description">
+                <div class="mission-statement">
+                    <p>El Centro de Desarrollo Infantil (CDI) es una modalidad de atención integral en establecimientos especializados que busca garantizar la educación inicial, cuidado y nutrición de niñas y niños en primera infancia.</p>
+                </div>
+            </div>
+
+            <div class="jobs-container">
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Coordinador/Director CDI</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título profesional en pedagogía infantil o afines</li>
+                                <li>36 meses de experiencia profesional</li>
+                                <li>12 meses relacionados con primera infancia</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Agente Educativo CDI</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título profesional en pedagogía infantil</li>
+                                <li>12 meses de experiencia profesional</li>
+                                <li>Alternativa: Normalista superior + 12 meses</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Profesional Psicosocial CDI</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título en psicología o trabajo social</li>
+                                <li>12 meses de experiencia profesional</li>
+                                <li>Desarrollo familiar o comunitario</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Profesional en Salud y Nutrición CDI</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título en nutrición y dietética</li>
+                                <li>6 meses de experiencia profesional</li>
+                                <li>Preferible formación en lactancia</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Auxiliar Pedagógico CDI</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Normalista superior o técnico</li>
+                                <li>6 meses de experiencia laboral</li>
+                                <li>Atención a primera infancia</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Gestor de Alimentos CDI</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Básica primaria completa</li>
+                                <li>6 meses de experiencia</li>
+                                <li>Certificación médica para manipulación</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Auxiliar de Servicios Generales CDI</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Certificado manipulación alimentos vigente</li>
+                                <li>6 meses de experiencia laboral</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Auxiliar Administrativo CDI</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título técnico o tecnólogo</li>
+                                <li>12 meses de experiencia laboral</li>
+                                <li>Ciencias administrativas o afines</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONVOCATORIA EIH -->
+        <div id="eih" class="convocatoria-section">
+            <div class="convocatoria-header eih">
+                <h2>🏠 Convocatoria EIH - Educación Inicial en el Hogar</h2>
+                <p>Modalidad familiar y comunitaria</p>
+            </div>
+            <div class="convocatoria-description eih">
+                <div class="mission-statement">
+                    <p>El EIH busca potenciar el desarrollo integral de las niñas y los niños de primera infancia y el bienestar de las mujeres y personas en estado de gestación, a través de la vivencia de prácticas y acciones de cuidado y crianza que favorezcan el disfrute de experiencias pedagógicas con sus familias y comunidades.</p>
+                </div>
+            </div>
+
+            <div class="jobs-container">
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Coordinador/Director EIH</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título profesional en pedagogía infantil o afines</li>
+                                <li>36 meses de experiencia profesional</li>
+                                <li>12 meses relacionados con primera infancia</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Agente Educativo EIH</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título profesional en pedagogía infantil</li>
+                                <li>6 meses de experiencia profesional</li>
+                                <li>Alternativa: Normalista superior + 12 meses</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Profesional Psicosocial EIH</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título en psicología o trabajo social</li>
+                                <li>6 meses de experiencia profesional</li>
+                                <li>Desarrollo familiar o comunitario</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Profesional en Salud y Nutrición EIH</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título en nutrición y dietética</li>
+                                <li>6 meses de experiencia profesional</li>
+                                <li>Preferible formación en lactancia</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Auxiliar Pedagógico EIH</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Normalista superior o técnico</li>
+                                <li>6 meses de experiencia laboral</li>
+                                <li>Atención a primera infancia</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+
+                <div class="job-listing">
+                    <div>
+                        <h3 class="job-title">Auxiliar Administrativo EIH</h3>
+                        <p class="job-location">📍 Tamalameque, Cesar</p>
+                        <div class="requirements">
+                            <h4>Requisitos:</h4>
+                            <ul>
+                                <li>Título técnico o tecnólogo</li>
+                                <li>12 meses de experiencia laboral</li>
+                                <li>Ciencias administrativas o afines</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="postulacion.html" class="apply-button">Postularse</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOCUMENTACIÓN -->
+        <div id="documentos" class="docs-section">
+            <h3>📚 Documentación Relevante</h3>
+            <ul>
+                <li>
+                    <a href="https://www.icbf.gov.co/system/files/procesos/a3.go4_.mt1_.pp_anexo_habilidades_y_acciones_del_talento_humano_contratado_v1.pdf" target="_blank">
+                        📄 Anexo de Habilidades y Acciones del Talento Humano - CDI
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.icbf.gov.co/system/files/procesos/go1.mt2_.pp_guia_operativa_del_servicio_educacion_inicial_en_el_hogar_v1.pdf" target="_blank">
+                        📄 Guía Operativa del Servicio Educación Inicial en el Hogar - EIH
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.icbf.gov.co/system/files/procesos/go4.mt1_.pp_guia_operativa_del_servicio_centro_de_desarrollo_infantil_cdi_v2.pdf" target="_blank">
+                        📄 Guía Operativa del Servicio Centro de Desarrollo Infantil - CDI
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer id="contacto" class="footer">
+        <p><strong>Contacto:</strong> asoc.famitamalameque@gmail.com</p>
+        <p><strong>Ubicación:</strong> Tamalameque, Cesar</p>
+        <p>© 2026 Asociación de Hogares Comunitarios FAMI de Tamalameque - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        // Configurar la fecha límite de la convocatoria
+        // Formato: Año, Mes (0-11), Día, Hora, Minuto, Segundo
+        const fechaLimite = new Date(2026, 0, 23, 23, 59, 59); // 28 de febrero de 2026, 11:59:59 PM
+
+        function actualizarContador() {
+            const ahora = new Date().getTime();
+            const distancia = fechaLimite - ahora;
+
+            const countdownElement = document.getElementById('countdown');
+
+            if (distancia < 0) {
+                countdownElement.innerHTML = `
+                    <div class="countdown-expired">
+                        ❌ Convocatoria Cerrada
+                    </div>
+                `;
+                return;
+            }
+
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `
+                <div class="countdown-display">
+                    <div class="countdown-item">
+                        <span class="countdown-value">${dias}</span>
+                        <span class="countdown-label">Días</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value">${horas}</span>
+                        <span class="countdown-label">Horas</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value">${minutos}</span>
+                        <span class="countdown-label">Min</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value">${segundos}</span>
+                        <span class="countdown-label">Seg</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Actualizar el contador cada segundo
+        actualizarContador();
+        setInterval(actualizarContador, 1000);
+    </script>
+</body>
+</html>

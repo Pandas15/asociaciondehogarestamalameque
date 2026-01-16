@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso de Postulación - FAMI Tamalameque</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f6fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .steps-container {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .step-card {
+            border-left: 4px solid #3498db;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 0 8px 8px 0;
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateX(10px);
+            background: #e8f4f8;
+        }
+
+        .step-number {
+            color: #3498db;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .requirements-sidebar {
+            position: sticky;
+            top: 2rem;
+            height: fit-content;
+        }
+
+        .sidebar-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar-section h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .requirements-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .requirements-list li {
+            margin: 0.8rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .requirements-list li:before {
+            content: "✓";
+            color: #27ae60;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .contact-email {
+            background: linear-gradient(135deg, #e8f4f8 0%, #d4e9f2 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+            border: 2px solid #3498db;
+        }
+
+        .email-label {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .email-highlight {
+            color: #2980b9;
+            font-weight: bold;
+            font-size: 1.2rem;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+
+        .alert-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .alert-box h3 {
+            color: #721c24;
+            margin-bottom: 1rem;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .info-box h3 {
+            color: #0c5460;
+            margin-bottom: 1rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .highlight-text {
+            background: #fff9c4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+            }
+
+            .requirements-sidebar {
+                position: static;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Proceso de Postulación</h1>
+        <p>Asociación de Hogares Comunitarios FAMI de Tamalameque</p>
+        <p>NIT: 800205845</p>
+    </header>
+
+    <div class="main-container">
+        <div class="steps-container">
+            <h2 class="section-title">Pasos para Postularse</h2>
+
+            <div class="step-card">
+                <div class="step-number">Paso 1: Preparación de Documentos</div>
+                <p>Reúna todos los documentos requeridos (ver lista en la barra lateral) y organícelos en formato digital (PDF preferiblemente).</p>
+                <div class="info-box">
+                    <h3>📋 Importante sobre documentación:</h3>
+                    <ul class="requirements-list">
+                        <li>Todos los diplomas y certificados deben ser <span class="highlight-text">verificados y autenticados</span> por las instituciones emisoras</li>
+                        <li>Los documentos deben estar legibles y completos</li>
+                        <li>Certificados de antecedentes deben ser del año <span class="highlight-text">2026</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">Paso 2: Verificación de Registro de Inhabilidades</div>
+                <p>Conforme a la <strong>Ley 2375 de 2024 (Ley de Entornos Seguros)</strong>, todos los aspirantes deben:</p>
+                <div class="alert-box">
+                    <h3>⚠️ REQUISITO OBLIGATORIO - LEY 2375 DE 2024</h3>
+                    <ul class="requirements-list">
+                        <li>Consultar el <strong>Registro de Inhabilidades por Delitos Sexuales</strong> contra menores de edad</li>
+                        <li>Adjuntar certificado de consulta al momento de postularse</li>
+                        <li>Esta consulta será verificada <span class="highlight-text">cada 4 meses</span> durante la ejecución del contrato</li>
+                        <li>Consulte en: <a href="https://www.policia.gov.co/registro-delitos-sexuales" target="_blank" style="color: #721c24; text-decoration: underline;">Policía Nacional - Registro de Delitos Sexuales</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">Paso 3: Pruebas Psicotécnicas</div>
+                <p>De acuerdo al <strong>Memorando 202616000000163173 del ICBF</strong>, el proceso de selección incluye:</p>
+                <ul class="requirements-list">
+                    <li>Aplicación de <strong>pruebas psicotécnicas</strong> obligatorias</li>
+                    <li>Instrumentos técnicos para evaluar competencias</li>
+                    <li>Estas pruebas son requisito indispensable para la selección</li>
+                    <li>La asociación le informará sobre fecha y lugar de aplicación</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">Paso 4: Envío de Postulación</div>
+                <p>Envíe su hoja de vida y documentos al correo electrónico:</p>
+                <div class="contact-email">
+                    <div class="email-label">Correo de postulación:</div>
+                    <span class="email-highlight">asoc.famitamalameque@gmail.com</span>
+                </div>
+                <p><strong>Asunto del correo:</strong></p>
+                <p style="background: #e8f4f8; padding: 1rem; border-radius: 6px; margin-top: 0.5rem;">
+                    "Aspirante al cargo de <span class="highlight-text">[NOMBRE DEL CARGO]</span> - <span class="highlight-text">[SU NOMBRE COMPLETO]</span>"
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: #666;">
+                    Ejemplo: "Aspirante al cargo de Agente Educativo CDI - María José González Pérez"
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">Paso 5: Conocimientos y Competencias Requeridas</div>
+                <p>Los candidatos deben demostrar dominio en:</p>
+                <ul class="requirements-list">
+                    <li>Microsoft Office (Word, Excel, PowerPoint)</li>
+                    <li>Navegación en Internet y uso de herramientas digitales</li>
+                    <li>Gestión de correo electrónico</li>
+                    <li>Herramientas específicas según el cargo (sistemas ICBF, plataformas educativas, etc.)</li>
+                </ul>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">Paso 6: Proceso de Selección</div>
+                <div class="info-box">
+                    <h3>📌 Política de Equidad de Género</h3>
+                    <p style="margin-bottom: 0.5rem;">Según orientaciones del ICBF, se priorizará la vinculación de <strong>mujeres</strong> en cargos de:</p>
+                    <ul class="requirements-list">
+                        <li>Agentes Educativas</li>
+                        <li>Maestras</li>
+                        <li>Auxiliares Pedagógicas</li>
+                    </ul>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Esto no excluye la participación de hombres, quienes pueden postularse bajo un enfoque de género inclusivo y no estereotipado.</p>
+                </div>
+                
+                <div class="warning-box">
+                    <h3>⚠️ Importante - Condiciones de Selección:</h3>
+                    <ul class="requirements-list">
+                        <li>El envío de la hoja de vida <strong>NO garantiza</strong> la contratación</li>
+                        <li>No se considerarán hojas de vida incompletas</li>
+                        <li>Hojas de vida enviadas fuera de la fecha establecida no serán revisadas</li>
+                        <li>Se verificará la autenticidad de todos los documentos con las instituciones emisoras</li>
+                        <li>Los resultados serán presentados en los Comités Técnicos Operativos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="requirements-sidebar">
+            <div class="sidebar-section">
+                <h3>📄 Documentos Requeridos</h3>
+                <ul class="requirements-list">
+                    <li>Diplomas y Actas de Grado</li>
+                    <li>Tarjeta profesional (si aplica)</li>
+                    <li>Certificado RETHUS (según el cargo)</li>
+                    <li>Certificados Laborales cronológicos</li>
+                    <li>Cédula de ciudadanía legible</li>
+                    <li>RUT actualizado 2025-2026</li>
+                    <li>Certificado Procuraduría 2026</li>
+                    <li>Certificado Contraloría 2026</li>
+                    <li>Antecedentes judiciales 2026</li>
+                    <li>Certificado RNMC 2026</li>
+                    <li><strong>Consulta Registro de Inhabilidades por Delitos Sexuales (LEY 2375/2024)</strong></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="alert-box" style="border-left-color: #27ae60; background: #d4edda;">
+                    <h3 style="color: #155724;">✓ Documentos Adicionales (Si es seleccionado)</h3>
+                    <ul class="requirements-list">
+                        <li>Certificado de afiliación a EPS</li>
+                        <li>Certificado de afiliación a Pensión</li>
+                        <li>Cuenta bancaria</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>🔗 Enlaces Importantes</h3>
+                <ul class="requirements-list" style="padding-left: 0;">
+                    <li style="padding-left: 0;"><a href="https://www.procuraduria.gov.co/CertWEB/" target="_blank" style="color: #3498db; text-decoration: none;">→ Certificado Procuraduría</a></li>
+                    <li style="padding-left: 0;"><a href="https://www.contraloria.gov.co/" target="_blank" style="color: #3498db; text-decoration: none;">→ Certificado Contraloría</a></li>
+                    <li style="padding-left: 0;"><a href="https://antecedentes.policia.gov.co/" target="_blank" style="color: #3498db; text-decoration: none;">→ Antecedentes Judiciales</a></li>
+                    <li style="padding-left: 0;"><a href="https://www.policia.gov.co/registro-delitos-sexuales" target="_blank" style="color: #3498db; text-decoration: none;">→ Registro Delitos Sexuales</a></li>
+                </ul>
+            </div>
+
+            <div class="action-buttons">
+                <a href="index.html" class="btn btn-secondary">← Volver al Inicio</a>
+                <a href="mailto:asoc.famitamalameque@gmail.com" class="btn btn-primary">✉ Enviar Postulación</a>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background-color: #2c3e50; color: white; text-align: center; padding: 2rem; margin-top: 3rem;">
+        <p><strong>Contacto:</strong> asoc.famitamalameque@gmail.com</p>
+        <p><strong>Ubicación:</strong> Tamalameque, Cesar</p>
+        <p>© 2026 Asociación de Hogares Comunitarios FAMI de Tamalameque</p>
+    </footer>
+</body>
+</html>
